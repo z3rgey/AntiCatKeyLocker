@@ -12,20 +12,19 @@ def on_key_press(event):
             unlocker = True
 
 user32 = ctypes.windll.user32
-if (user32.GetKeyState(0x90)) == 1:
+if user32.GetKeyState(0x90) == 1:
     locker = True
-elif (user32.GetKeyState(0x90)) == 0:
+elif user32.GetKeyState(0x90) == 0:
     locker = False
 unlocker = False
 keyboard.on_press(on_key_press)
 counter = 0
 
 while True:
-    print(user32.GetKeyState(0x90))
     if locker:
         user32.BlockInput(True)
     else:
-        if (user32.GetKeyState(0x90)) == 1:
+        if user32.GetKeyState(0x90) == 1:
             if unlocker:
                 user32.BlockInput(False)
                 user32.keybd_event(0x90, 0x45, 0, 0)
